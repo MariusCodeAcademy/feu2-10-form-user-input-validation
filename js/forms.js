@@ -6,6 +6,7 @@ const formEl = document.getElementById('loginForm');
 const usernameInputEl = document.getElementById('username');
 const emailInputEl = document.getElementById('email');
 const legalCheckboxEl = document.getElementById('legal');
+const timeRadioEl = document.getElementById('timeRadio');
 
 // console.log('formEl ===', formEl);
 
@@ -24,7 +25,11 @@ formEl.addEventListener('submit', function (event) {
   // surinkti input reikmes
   const usernameValue = usernameInputEl.value.trim();
   const emailValue = emailInputEl.value.trim();
-
+  // paimti reiksme is timeRadioEl
+  const bestTimeSelectedEl = timeRadioEl.querySelector('input:checked');
+  // OBJ?.SAVYBE nebeiesko toliau objekte jei iki jo turim falsy reiksme
+  const bestTimeValue = bestTimeSelectedEl?.value ? bestTimeSelectedEl.value : 'nepasirinkta';
+  console.log('bestTimeValue ===', bestTimeValue);
   // String.prototype.trim() = nutrina tuscius tarpus is abieju pusiu
 
   // console.log('usernameValue ===', usernameValue);
@@ -41,6 +46,7 @@ formEl.addEventListener('submit', function (event) {
     return;
   }
 
+  // chekIfEmpty(usernameValue)
   // jei nera teksto ilgio
   if (usernameValue.length === 0) {
     console.log('iveskite varda');
@@ -51,7 +57,7 @@ formEl.addEventListener('submit', function (event) {
     return;
   }
   // ar usernameValue yra trumpenis nei 3 simboliai
-
+  // checkLengh()
   // pirmine validacija email
   if (emailValue.length === 0) {
     emailInputEl.nextElementSibling.style.display = 'block';
@@ -62,10 +68,15 @@ formEl.addEventListener('submit', function (event) {
   // ar ivestame emaile, yra raide '@'
 
   // If nera klaidu tai siunciam duomenis
-  console.log('Sending.....', {
-    usernameValue,
-    emailValue,
-  });
+
+  const formValuesObj = {
+    username: usernameValue,
+    email: emailValue,
+    bestTime: bestTimeValue,
+  };
+
+  console.log('Sending.....', formValuesObj);
+  // fetch()
 });
 
 /**
