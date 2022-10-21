@@ -17,10 +17,65 @@ formEl.addEventListener('submit', (event) => {
   const formValuesObj = {
     email: emailEl.value.trim(),
     psw: pswEl.value.trim(),
-    pswRepEl: pswRepEl.value.trim(),
+    pswRep: pswRepEl.value.trim(),
   };
 
   // validacijos
 
-  console.log('formValuesObj ===', formValuesObj);
+  if (isValueEmtpy(formValuesObj.email)) {
+    console.log('iveskite email');
+
+    // NUTRAUKIA KODO VYGDYMA !!!!!!!!!!!
+    return;
+  }
+
+  if (!isThereALetter(formValuesObj.email, '@')) {
+    console.log('reiketu @ raides');
+    return;
+  }
+
+  if (isValueEmtpy(formValuesObj.psw)) {
+    console.log('iveskite slaptazodi');
+    // NUTRAUKIA KODO VYGDYMA !!!!!!!!!!!
+    return;
+  }
+
+  // 3. palyginti ir atspausdinti ar sutampa slaptazodziai
+  if (formValuesObj.psw !== formValuesObj.pswRep) {
+    console.log('slaptazodziai nesutampa');
+    // NUTRAUKIA KODO VYGDYMA !!!!!!!!!!!
+    return;
+  }
+
+  console.log('SENDDING.... ===', formValuesObj);
 });
+
+// HELPERS
+/**
+ *
+ * @param {string} valueToCheck
+ * @returns true if value is empty
+ */
+
+function isValueEmtpy(valueToCheck) {
+  let rezult = valueToCheck.length === 0;
+  // console.log('rezult ===', rezult);
+  return rezult;
+}
+
+function isThereALetter(valueToCheck, needle) {
+  if (!needle) console.error('iveskite needle');
+  let arYra = valueToCheck.includes(needle);
+  // console.log('arYra ===', arYra);
+  return arYra;
+}
+
+isThereALetter('James', '@'); // false
+// isThereALetter('James'); // false
+isThereALetter('James', 'a'); // true
+isThereALetter('James.kazkas', '.'); // true
+
+const allErrors = {
+  email: ['iveskite email', 'butina @ raide'],
+  psw: 'iveskite slaptazodi',
+};
