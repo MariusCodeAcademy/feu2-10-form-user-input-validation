@@ -9,16 +9,24 @@
   <link rel="stylesheet" href="./style/style.css" />
   <!-- itraukiu javascript -->
   <!-- <script src="./js/main.js" defer></script> -->
-  <script src="./js/createElementHelper.js" defer></script>
+  <!-- <script src="./js/createElementHelper.js" defer></script> -->
+  <script src="./js/forms.js" defer></script>
 </head>
 
 <body>
   <div class="container">
     <h1>Forms</h1>
 
+    <form id="loginForm" autocomplete="off">
+      <input type="text" name="username" id="username" placeholder="Username">
+      <input type="text" name="email" id="email" placeholder="email">
+      <button type="submit">Login</button>
+    </form>
+
+    <button id="btn">click</button>
+
+
     <div id="app">
-
-
     </div>
   </div>
 </body>
