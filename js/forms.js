@@ -8,16 +8,14 @@ const emailInputEl = document.getElementById('email');
 
 // console.log('formEl ===', formEl);
 
-btn.addEventListener('click', function (event) {
-  console.log(event);
-});
+// btn.addEventListener('click', function (event) {
+//   console.log(event);
+// });
 
 // uzdeti formai issiuntimo klausikli eventListener
 formEl.addEventListener('submit', function (event) {
   // event = specialus objekas su informacija apie ivykusi ivyki
   // sutabdo numatytiji veiksma - issiuntima i kita psl
-  console.log(event);
-
   event.preventDefault();
   console.log('submit ivyko');
 
@@ -27,4 +25,13 @@ formEl.addEventListener('submit', function (event) {
 
   console.log('usernameValue ===', usernameValue);
   console.log('emailValue ===', emailValue);
+
+  // pirmine validacija
+  if (usernameValue.length === 0) {
+    console.log('iveskite varda');
+    // nusitaikyti i usernameInputEl
+    // po juo esanti elementa norim parodyti su display block (nextElementSibling)
+    usernameInputEl.nextElementSibling.style.display = 'block';
+  }
+  // pirmine validacija email
 });
