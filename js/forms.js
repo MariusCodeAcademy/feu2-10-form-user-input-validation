@@ -5,6 +5,7 @@ console.log('forms.js');
 const formEl = document.getElementById('loginForm');
 const usernameInputEl = document.getElementById('username');
 const emailInputEl = document.getElementById('email');
+const legalCheckboxEl = document.getElementById('legal');
 
 // console.log('formEl ===', formEl);
 
@@ -21,13 +22,25 @@ formEl.addEventListener('submit', function (event) {
   clearErrors();
 
   // surinkti input reikmes
-  const usernameValue = usernameInputEl.value;
-  const emailValue = emailInputEl.value;
+  const usernameValue = usernameInputEl.value.trim();
+  const emailValue = emailInputEl.value.trim();
+
+  // String.prototype.trim() = nutrina tuscius tarpus is abieju pusiu
 
   // console.log('usernameValue ===', usernameValue);
   // console.log('emailValue ===', emailValue);
 
   // pirmine validacija
+  console.log('legalCheckboxEl.value ===', legalCheckboxEl.value);
+  // ar varnele pazymeta input.checked === true|false
+  if (legalCheckboxEl.checked === false) {
+    // varnele neuzdeta, vartotojas nesutiko
+    // pranesti apie klaida
+    legalCheckboxEl.nextElementSibling.style.display = 'block';
+    // nutraukti fn vygdyma
+    return;
+  }
+
   // jei nera teksto ilgio
   if (usernameValue.length === 0) {
     console.log('iveskite varda');
